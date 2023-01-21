@@ -13,16 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cast_profile', function (Blueprint $table) {
+        Schema::create('menu_category_master', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('age');
-            $table->integer('bust');
-            $table->integer('waist');
-            $table->integer('hip');
-            $table->string('gender');
-            $table->string('one_word');
-            $table->string('description');
+            $table->string("name");
+            $table->float("back_rate");
             $table->timestamps();
         });
     }
@@ -34,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cast_profile');
+        Schema::dropIfExists('menu_category_master');
     }
 };
