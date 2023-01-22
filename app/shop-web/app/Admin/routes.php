@@ -14,4 +14,5 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('cast-profiles', CastProfileController::class);
     $router->resource('menu-category-master', MenuMasterController::class);
+    $router->resource('menus', MenuController::class);
 });

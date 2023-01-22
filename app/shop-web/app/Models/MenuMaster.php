@@ -10,4 +10,7 @@ class MenuMaster extends Model
     use HasFactory;
     protected $table = 'menu_category_master';
 
+    
+
+
 }

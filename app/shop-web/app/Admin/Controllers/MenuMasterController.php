@@ -25,7 +25,8 @@ class MenuMasterController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new MenuMaster());
-
+        $grid->column('name', __('カテゴリ名'));
+        $grid->column('back_rate', __('バック率'));
 
 
         return $grid;
@@ -55,7 +56,9 @@ class MenuMasterController extends AdminController
     {
         $form = new Form(new MenuMaster());
 
-
+        $form->display('id', 'ID');
+        $form->text('name', 'カテゴリ名');
+        $form->rate('back_rate', 'バック率');
 
         return $form;
     }
