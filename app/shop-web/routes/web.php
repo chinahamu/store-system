@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('/get_profiles','App\Http\Controllers\ProfileController@get_profiles');
+Route::get('/get_menues','App\Http\Controllers\MenuController@get_menues');

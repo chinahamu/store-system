@@ -7,16 +7,16 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link" to="/top">トップ</router-link>
+            <router-link class="nav-link" to="/">トップ</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/attendance">出勤</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/membership">在籍</router-link>
+            <router-link class="nav-link" to="/profiles">在籍</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/pricing">料金</router-link>
+            <router-link class="nav-link" to="/menues">料金</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/ranking">ランキング</router-link>
