@@ -15,7 +15,7 @@ class MenuMasterController extends AdminController
      *
      * @var string
      */
-    protected $title = 'MenuMaster';
+    protected $title = 'メニューカテゴリ登録';
 
     /**
      * Make a grid builder.

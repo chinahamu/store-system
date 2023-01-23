@@ -15,4 +15,5 @@ Route::group([
     $router->resource('cast-profiles', CastProfileController::class);
     $router->resource('menu-category-master', MenuMasterController::class);
     $router->resource('menus', MenuController::class);
+    $router->resource('cast-shifts', CastShiftsController::class);
 });

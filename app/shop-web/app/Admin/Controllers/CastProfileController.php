@@ -15,7 +15,7 @@ class CastProfileController extends AdminController
      *
      * @var string
      */
-    protected $title = 'CastProfiles';
+    protected $title = 'キャストプロフィール';
 
     /**
      * Make a grid builder.
