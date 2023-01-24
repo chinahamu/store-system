@@ -10,7 +10,7 @@
             <router-link class="nav-link" to="/">トップ</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/attendance">出勤</router-link>
+            <router-link class="nav-link" to="/shifts">出勤</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/profiles">在籍</router-link>

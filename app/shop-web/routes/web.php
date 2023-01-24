@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::get('/get_profiles','App\Http\Controllers\ProfileController@get_profiles');
 Route::get('/get_menues','App\Http\Controllers\MenuController@get_menues');
+Route::get('/get_cast_shifts','App\Http\Controllers\ShiftController@get_cast_shifts');
