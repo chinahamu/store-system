@@ -1,12 +1,12 @@
 <template>
     <div class="row">
       <div class="card col-3 ms-2" v-for="profile in profiles" :key="profile.id" style="width:180px;margin:10px">
-        <a href="/detail/{{profile.id}}">
+        <router-link :to="'/detail/' + profile.id">
           <img src="https://placehold.jp/360x500.png" class="card-img-top" width="180" height="250" alt="{{profile.name}}">
-        </a>
+        </router-link>
         <div class="card-body">
           <h5 class="card-title">
-            <a href="/detail.php?id=11377">{{profile.name}}（{{profile.age}}）</a>
+            <router-link class="nav-link" :to="'/detail/' + profile.id">{{profile.name}}（{{profile.age}}）</router-link>
           </h5>
           <p class="card-text">T{{profile.tall}}<br>B:{{profile.bust}}(C) W:{{profile.waist}} H:{{profile.hip}}</p>
         </div>

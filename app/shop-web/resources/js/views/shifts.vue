@@ -11,7 +11,7 @@
         </a>
         <div class="card-body">
           <h5 class="card-title">
-            <a href="/detail.php?id=11377">{{profile.name}}（{{profile.age}}）</a>
+            <router-link class="nav-link" :to="'/detail/' + profile.id">{{profile.name}}（{{profile.age}}）</router-link>
           </h5>
           <p class="card-text">T{{profile.tall}}<br>B:{{profile.bust}}(C) W:{{profile.waist}} H:{{profile.hip}}</p>
         </div>
