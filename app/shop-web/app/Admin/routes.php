@@ -16,4 +16,6 @@ Route::group([
     $router->resource('menu-category-master', MenuMasterController::class);
     $router->resource('menus', MenuController::class);
     $router->resource('cast-shifts', CastShiftsController::class);
+    $router->resource('cast-survey-questions', CastSurveyQuestionsController::class);
+    $router->resource('cast-survey-answers', CastSurveyAnswersController::class);
 });

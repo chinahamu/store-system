@@ -2,36 +2,39 @@
   <div>
     <!-- <carousel v-if="profiles" :per-page="1" :loop="true" :navigation-enabled="true" :pagination-enabled="true">
           <slide v-for="profile in profiles" :key="profile"> -->
-    <div v-for="(picture, index) in pictures(profiles[0])" key="index" >
-              <img :src="'/uploads/' + picture" alt="profile image">
-            </div>
-              <!-- </slide>
+    <div v-for="(picture, index) in pictures(profiles[0])" key="index">
+      <img :src="'/uploads/' + picture" alt="profile image" width="350px">
+    </div>
+    <!-- </slide>
     </carousel> -->
 
   </div>
 </template>
 <script>
 import axios from 'axios';
-import { Carousel, Slide } from 'vue-carousel';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+
 
 export default {
-  name:'Detail',
+  name: 'Detail',
   components: {
     Carousel,
-    Slide
+    Slide,
+    Pagination,
+    Navigation,
   },
   data() {
     return {
       profiles: []
     }
   },
-  methods:{
-    pictures(profile){
+  methods: {
+    pictures(profile) {
       return JSON.parse(profile.pictures);
     }
   },
   mounted() {
-    axios.get('/get_detail/'+ this.$route.params.cast_id )
+    axios.get('/get_detail/' + this.$route.params.cast_id)
       .then(response => {
         // APIから取得したデータをVue.jsのデータとして扱う
         this.profiles = response.data;
