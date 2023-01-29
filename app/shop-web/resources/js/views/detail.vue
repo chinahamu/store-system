@@ -22,11 +22,13 @@
         <p class="text-center">{{profiles[0].description}}</p>
       </div>
     </div>
+    <CastShifts></CastShifts>
 </template>
 <script>
 import 'vue3-carousel/dist/carousel.css';
 import axios from 'axios';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+import CastShifts from './cast_shifts.vue'
 
 
 export default {
@@ -36,11 +38,11 @@ export default {
     Slide,
     Pagination,
     Navigation,
+    CastShifts
   },
   data() {
     return {
-      profiles: [],
-      shifts: []
+      profiles: []
     }
   },
   methods: {
@@ -56,16 +58,6 @@ export default {
         //this.profiles.splice();
         //this.profiles.pictures = JSON.parse(this.profiles.pictures);
         console.log(this.profiles);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  
-      axios.get('/get_shifts/' + this.$route.params.cast_id)
-      .then(response => {
-        // APIから取得したデータをVue.jsのデータとして扱う
-        this.shifts = response.data;
-        console.log(this.shifts);
       })
       .catch(error => {
         console.log(error);

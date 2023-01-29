@@ -11,11 +11,13 @@
 
 <script>
 import axios from 'axios';
-import Header from './views/header.vue'
+import Header from './views/header.vue';
+import CastShifts from './views/cast_shifts.vue';
 
 export default {
   components: {
-    Header
+    Header,
+    CastShifts
   }
 }
 </script>
