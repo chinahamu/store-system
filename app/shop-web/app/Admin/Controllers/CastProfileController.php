@@ -34,8 +34,8 @@ class CastProfileController extends AdminController
         $grid->column('waist', __('ウエスト'));
         $grid->column('hip', __('ヒップ'));
         $grid->column('gender', __('性別'));
-        $grid->column('one_word', __('ひとこと'));
-        $grid->column('description', __('プロフィール詳細'));
+        $grid->column('one_word', __('女の子からひとこと'));
+        $grid->column('description', __('お店からの紹介文'));
 
         return $grid;
     }
@@ -77,8 +77,8 @@ class CastProfileController extends AdminController
             '男性' => '男性',
         ];
         $form->select('gender', 'gender')->options($gender);
-        $form->textarea('one_word', 'ひとこと');
-        $form->textarea('description', 'プロフィール詳細');
+        $form->textarea('one_word', '女の子からひとこと');
+        $form->textarea('description', 'お店からの紹介文');
 
 
         return $form;
