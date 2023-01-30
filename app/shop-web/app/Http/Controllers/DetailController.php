@@ -32,4 +32,11 @@ class DetailController extends Controller
         ->where('cast_id',$request->cast_id)->get();
         return $options;
     }
+
+    public function get_answers(Request $request){
+        $options = DB::table('cast_survey_answers')
+        ->join('cast_survey_questions', 'cast_survey_questions.id', '=', 'cast_survey_answers.question_id')
+        ->where('cast_id',$request->cast_id)->get();
+        return $options;
+    }
 }

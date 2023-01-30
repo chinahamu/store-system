@@ -23,3 +23,4 @@ Route::get('/get_cast_shifts','App\Http\Controllers\ShiftController@get_cast_shi
 Route::get('/get_detail/{cast_id}','App\Http\Controllers\DetailController@get_detail');
 Route::get('/get_shifts/{cast_id}','App\Http\Controllers\DetailController@get_shifts');
 Route::get('/get_options/{cast_id}','App\Http\Controllers\DetailController@get_options');
+Route::get('/get_answers/{cast_id}','App\Http\Controllers\DetailController@get_answers');
