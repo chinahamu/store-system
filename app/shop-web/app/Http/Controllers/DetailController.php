@@ -15,7 +15,7 @@ class DetailController extends Controller
     }
 
     public function get_shifts(Request $request){
-        $date = Carbon::now();
+        $date = Carbon::today();
         $end_date = $date->copy()->addDays(7);
         
         $shifts = DB::table('cast_shifts')
@@ -24,5 +24,12 @@ class DetailController extends Controller
                     ->get();
 
         return $shifts;
+    }
+
+    public function get_options(Request $request){
+        $options = DB::table('cast_option_compatibles')
+        ->join('menus', 'menus.id', '=', 'cast_option_compatibles.option_id')
+        ->where('cast_id',$request->cast_id)->get();
+        return $options;
     }
 }

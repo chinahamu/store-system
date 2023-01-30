@@ -23,12 +23,14 @@
       </div>
     </div>
     <CastShifts></CastShifts>
+    <Options></Options>
 </template>
 <script>
 import 'vue3-carousel/dist/carousel.css';
 import axios from 'axios';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 import CastShifts from './cast_shifts.vue'
+import Options from './options.vue'
 
 
 export default {
@@ -38,7 +40,8 @@ export default {
     Slide,
     Pagination,
     Navigation,
-    CastShifts
+    CastShifts,
+    Options
   },
   data() {
     return {
