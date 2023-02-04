@@ -1,0 +1,3 @@
+docker/db
+docker/nginx/*.log
+app/mysql-apt-config*
