@@ -19,4 +19,5 @@ Route::group([
     $router->resource('cast-survey-questions', CastSurveyQuestionsController::class);
     $router->resource('cast-survey-answers', CastSurveyAnswersController::class);
     $router->resource('cast-option-compatibles', CastOptionCompatiblesController::class);
+    $router->resource('customers', CustomerController::class);
 });
