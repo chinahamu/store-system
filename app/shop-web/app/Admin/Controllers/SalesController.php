@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\DB;
 
 class SalesController extends AdminController
 {
@@ -27,14 +28,20 @@ class SalesController extends AdminController
         $grid = new Grid(new Sales());
 
         $grid->column('id', __('Id'));
-        $grid->column('cast_id', __('Cast id'));
-        $grid->column('customer_id', __('Customer id'));
-        $grid->column('course_id', __('Course id'));
-        $grid->column('option_ids', __('Option ids'));
-        $grid->column('transportation_expense', __('Transportation expense'));
-        $grid->column('commission', __('Commission'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->cast_profiles('キャスト')->display(function ($cast_profiles) {
+            return $cast_profiles['name'];
+        });
+        $grid->customers('顧客')->display(function ($customers) {
+            return $customers['name'];
+        });
+        $grid->order('対応メニュー')->display(function ($order) {
+            return $order['name'];
+        });
+        $grid->column('option_ids', __('オプション'));
+        $grid->transpotation('交通費')->display(function ($transpotation) {
+            return $transpotation['price'];
+        });
+        $grid->column('commission', __('手数料他'));
 
         return $grid;
     }
@@ -50,14 +57,12 @@ class SalesController extends AdminController
         $show = new Show(Sales::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('cast_id', __('Cast id'));
-        $show->field('customer_id', __('Customer id'));
-        $show->field('course_id', __('Course id'));
-        $show->field('option_ids', __('Option ids'));
-        $show->field('transportation_expense', __('Transportation expense'));
-        $show->field('commission', __('Commission'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('cast_id', __('キャスト'));
+        $show->field('customer_id', __('顧客'));
+        $show->field('course_id', __('対応コース'));
+        $show->field('option_ids', __('オプション'));
+        $show->field('transportation_expense', __('交通費'));
+        $show->field('commission', __('手数料'));
 
         return $show;
     }
@@ -70,13 +75,22 @@ class SalesController extends AdminController
     protected function form()
     {
         $form = new Form(new Sales());
-
-        $form->number('cast_id', __('Cast id'));
-        $form->number('customer_id', __('Customer id'));
-        $form->number('course_id', __('Course id'));
-        $form->textarea('option_ids', __('Option ids'));
-        $form->number('transportation_expense', __('Transportation expense'));
-        $form->number('commission', __('Commission'));
+        $form->select('cast_id', 'キャスト')->options(
+            DB::table('cast_profiles')->pluck('name','id')
+        );
+        $form->select('customer_id', '顧客')->options(
+            DB::table('customers')->pluck('name','id')
+        );
+        $form->select('course_id', '対応コース')->options(
+            DB::table('Menus')->where('category_id',1)->pluck('name','id')
+        );
+        $form->checkbox('option_ids', 'オプション')->options(
+            DB::table('Menus')->where('category_id',3)->pluck('name','id')
+        );
+        $form->select('transportation_expense', '交通費')->options(
+            DB::table('Menus')->where('category_id',4)->pluck('name','id')
+        );
+        $form->number('commission', __('手数料他'));
 
         return $form;
     }
