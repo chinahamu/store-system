@@ -70,8 +70,8 @@ class CastShiftsController extends AdminController
         $form->select('cast_id', 'キャスト')->options(
             DB::table('cast_profiles')->pluck('name','id')
         );
-        $form->datetime('start_datetime', __('勤務開始日時'))->default(date('Y-m-d H:i:s'));
-        $form->datetime('end_datetime', __('勤務終了日時'))->default(date('Y-m-d H:i:s'));
+        $form->datetime('start_datetime', __('勤務開始日時'))->default(date('Y-m-d H:i:00'));
+        $form->datetime('end_datetime', __('勤務終了日時'))->default(date('Y-m-d H:i:00'));
 
         return $form;
     }

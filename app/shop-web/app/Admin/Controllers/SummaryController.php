@@ -9,14 +9,14 @@ use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Illuminate\Support\Facades\DB;
 
-class SalesController extends AdminController
+class SummaryController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Sales';
+    protected $title = '集計画面';
 
     /**
      * Make a grid builder.
@@ -34,7 +34,6 @@ class SalesController extends AdminController
         $grid->customers('顧客')->display(function ($customers) {
             return $customers['name'];
         });
-        $grid->column('service_datetime', __('対応日時'));
         $grid->order('対応メニュー')->display(function ($order) {
             return $order['name'];
         });
@@ -85,7 +84,6 @@ class SalesController extends AdminController
         $form->select('customer_id', '顧客')->options(
             DB::table('customers')->pluck('name','id')
         );
-        $form->datetime('service_datetime', __('対応日時'))->default(date('Y-m-d H:i:00'));
         $form->select('course_id', '対応コース')->options(
             DB::table('Menus')->where('category_id',1)->pluck('name','id')
         );

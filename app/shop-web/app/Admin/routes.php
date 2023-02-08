@@ -21,4 +21,5 @@ Route::group([
     $router->resource('cast-option-compatibles', CastOptionCompatiblesController::class);
     $router->resource('customers', CustomerController::class);
     $router->resource('sales', SalesController::class);
+    $router->resource('summary', SummaryController::class);
 });
