@@ -37,6 +37,9 @@ class SalesController extends AdminController
         $grid->order('対応メニュー')->display(function ($order) {
             return $order['name'];
         });
+        $grid->appoints('指名')->display(function ($appoints) {
+            return $appoints['name'];
+        });
         $grid->column('option_ids', __('オプション'));
         $grid->transpotation('交通費')->display(function ($transpotation) {
             return $transpotation['price'];
@@ -83,6 +86,9 @@ class SalesController extends AdminController
         );
         $form->select('course_id', '対応コース')->options(
             DB::table('Menus')->where('category_id',1)->pluck('name','id')
+        );
+        $form->select('appoint', '指名')->options(
+            DB::table('Menus')->where('category_id',2)->pluck('name','id')
         );
         $form->checkbox('option_ids', 'オプション')->options(
             DB::table('Menus')->where('category_id',3)->pluck('name','id')

@@ -43,4 +43,9 @@ class Sales extends Model
     {
         return $this->hasOne(Menus::class,'id','transportation_expense');
     }
+
+    public function appoints()
+    {
+        return $this->hasOne(Menus::class,'id','appoint');
+    }
 }

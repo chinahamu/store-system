@@ -25,7 +25,7 @@ services:
       MYSQL_USER: shop
       MYSQL_PASSWORD: shop
       TZ: 'Asia/Tokyo' 
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --port=3306
     volumes:  
       - ./docker/db/data:/var/lib/mysql
       - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf 
