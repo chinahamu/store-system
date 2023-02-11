@@ -28,11 +28,18 @@ class SummaryController extends AdminController
     protected function grid()
     {
 
+
+        $sales_list = sales_list();
+        dd($sales_list);
+        return 1;
+    }
+
+    public function sales_list(){
         $query = new QueryController();
         $sales = $query->sales();
         $menus = $query->menus();
         $sale_res = [];
-// Assuming $sales and $menus are already defined as collections
+// Assuming $sales and $menus are already defined as collectins
 foreach ($sales as $sale) {
     $sale_res[$sale->cast_id][$sale->id]["option_sale"] = 0;
     // Loop through the menus and check for matching ids
@@ -59,60 +66,5 @@ foreach ($sales as $sale) {
       }
     }
   }
-        dd($sale_res);
 
-        return 1;
     }
-
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        $show = new Show(Sales::findOrFail($id));
-
-        $show->field('id', __('Id'));
-        $show->field('cast_id', __('キャスト'));
-        $show->field('customer_id', __('顧客'));
-        $show->field('course_id', __('対応コース'));
-        $show->field('option_ids', __('オプション'));
-        $show->field('transportation_expense', __('交通費'));
-        $show->field('commission', __('手数料'));
-
-        return $show;
-    }
-
-    /**
-     * Make a form builder.
-     *
-     * @return Form
-     */
-    protected function form()
-    {
-        $form = new Form(new Sales());
-        $form->select('cast_id', 'キャスト')->options(
-            DB::table('cast_profiles')->pluck('name','id')
-        );
-        $form->select('customer_id', '顧客')->options(
-            DB::table('customers')->pluck('name','id')
-        );
-        $form->select('course_id', '対応コース')->options(
-            DB::table('Menus')->where('category_id',1)->pluck('name','id')
-        );
-        $form->select('appoint', '指名')->options(
-            DB::table('Menus')->where('category_id',2)->pluck('name','id')
-        );
-        $form->checkbox('option_ids', 'オプション')->options(
-            DB::table('Menus')->where('category_id',3)->pluck('name','id')
-        );
-        $form->select('transportation_expense', '交通費')->options(
-            DB::table('Menus')->where('category_id',4)->pluck('name','id')
-        );
-        $form->number('commission', __('手数料他'));
-
-        return $form;
-    }
-}
