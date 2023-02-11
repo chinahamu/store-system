@@ -8,6 +8,8 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Admin\Controllers\QueryController;
 
 class SummaryController extends AdminController
 {
@@ -25,28 +27,41 @@ class SummaryController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new Sales());
 
-        $grid->column('id', __('Id'));
-        $grid->cast_profiles('キャスト')->display(function ($cast_profiles) {
-            return $cast_profiles['name'];
-        });
-        $grid->customers('顧客')->display(function ($customers) {
-            return $customers['name'];
-        });
-        $grid->order('対応メニュー')->display(function ($order) {
-            return $order['name'];
-        });
-        $grid->appoints('指名')->display(function ($appoints) {
-            return $appoints['name'];
-        });
-        $grid->column('option_ids', __('オプション'));
-        $grid->transpotation('交通費')->display(function ($transpotation) {
-            return $transpotation['price'];
-        });
-        $grid->column('commission', __('手数料他'));
+        $query = new QueryController();
+        $sales = $query->sales();
+        $menus = $query->menus();
+        $sale_res = [];
+// Assuming $sales and $menus are already defined as collections
+foreach ($sales as $sale) {
+    $sale_res[$sale->cast_id][$sale->id]["option_sale"] = 0;
+    // Loop through the menus and check for matching ids
+    foreach ($menus as $menu) {
+      // If the course_id matches the menu id, add the course_price
+      if ($sale->course_id == $menu->id) {
+        $sale_res[$sale->cast_id][$sale->id]["course_sale"] = $menu->price;
+      }
+      // If the appoint matches the menu id, add the appoint_price
+      if ($sale->appoint == $menu->id) {
+        $sale_res[$sale->cast_id][$sale->id]["appoint_sale"] = $menu->price;
+      }
+      // If the transportation_expense matches the menu id, add the transportation_expense_price
+      if ($sale->transportation_expense == $menu->id) {
+        $sale_res[$sale->cast_id][$sale->id]["transportation_expense_sale"] = $menu->price;
+      }
 
-        return $grid;
+      $option_ids = explode(',', $sale->option_ids);
+      foreach($option_ids as $option_id){
+        // If the transportation_expense matches the menu id, add the transportation_expense_price
+        if ($option_id == $menu->id) {
+            $sale_res[$sale->cast_id][$sale->id]["option_sale"] += $menu->price;
+        } 
+      }
+    }
+  }
+        dd($sale_res);
+
+        return 1;
     }
 
     /**
