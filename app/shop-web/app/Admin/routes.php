@@ -22,4 +22,5 @@ Route::group([
     $router->resource('customers', CustomerController::class);
     $router->resource('sales', SalesController::class);
     $router->resource('summary', SummaryController::class);
+    $router->resource('cast-shifts-chart', ShiftChartController::class);
 });

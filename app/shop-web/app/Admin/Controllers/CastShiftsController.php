@@ -26,7 +26,7 @@ class CastShiftsController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new CastShifts());
-
+        $grid->model()->orderBy('start_datetime', 'desc');
         $grid->column('id', __('Id'));
         $grid->column('cast_id', __('キャスト'));
         $grid->cast_profiles('キャスト')->display(function ($cast_profiles) {
