@@ -1,13 +1,13 @@
 <template>
 <div class="nav nav-tabs">
-  <a class="nav-item nav-link" v-for="tab in Object.keys(castGroups)" :key="tab" @click="selectTab(tab)">
+  <a class="nav-item nav-link" v-for="tab in sortedTabs" :key="tab" @click="selectTab(tab)">
         {{ tab }}
     </a>
 </div>
 <div class="row">
 <div class="card col-3 ms-2" v-for="profile in selectedGroup" :key="profile.id" style="width:180px;margin:10px">
         <a href="/detail/{{profile.id}}">
-          <img src="https://placehold.jp/360x500.png" class="card-img-top" width="180" height="250" alt="{{profile.name}}">
+          <img :src="profile.profile_images ? 'uploads/'+profile.profile_images : 'https://placehold.jp/360x500.png'" class="card-img-top" width="180" height="250" :alt="profile.name">
         </a>
         <div class="card-body">
           <h5 class="card-title">
@@ -35,6 +35,10 @@ export default {
         groups[date].push(cast)
         return groups
       }, {})
+    },
+    sortedTabs() {
+    // タブを日付順にソート
+    return Object.keys(this.castGroups).sort().reverse()
     },
     selectedGroup() {
       //選択されたtabに対応するgroupを返す

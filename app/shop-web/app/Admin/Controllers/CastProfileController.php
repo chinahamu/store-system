@@ -64,6 +64,7 @@ class CastProfileController extends AdminController
     {
         $form = new Form(new CastProfiles());
         $form->display('id', 'ID');
+        $form->image('profile_images','メイン画像')->removable()->rules('mimes:jpeg,png,jpg')->uniqueName();
         $form->multipleFile('pictures','プロフ画像')->removable()->rules('mimes:jpeg,png,jpg')->uniqueName();
         $form->text('name', '名前');
         $form->text('blad', '血液型');

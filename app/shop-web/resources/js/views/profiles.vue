@@ -2,7 +2,7 @@
     <div class="row">
       <div class="card col-3 ms-2" v-for="profile in profiles" :key="profile.id" style="width:180px;margin:10px">
         <router-link :to="'/detail/' + profile.id">
-          <img src="https://placehold.jp/360x500.png" class="card-img-top" width="180" height="250" alt="{{profile.name}}">
+          <img :src="profile.profile_images ? 'uploads/'+profile.profile_images : 'https://placehold.jp/360x500.png'" class="card-img-top" width="180" height="250" :alt="profile.name">
         </router-link>
         <div class="card-body">
           <h5 class="card-title">

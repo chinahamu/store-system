@@ -1,4 +1,7 @@
 <template>
+  <h1 style="text-align: center;">
+  {{profiles[0].name}}({{profiles[0].age}})
+</h1>
   <carousel :items-to-show="1.5">
     <div class="carousel__item">
     <slide v-if=profiles v-for="(picture, index) in pictures(profiles[0])" key="index">
