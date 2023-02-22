@@ -24,3 +24,4 @@ Route::get('/get_detail/{cast_id}','App\Http\Controllers\DetailController@get_de
 Route::get('/get_shifts/{cast_id}','App\Http\Controllers\DetailController@get_shifts');
 Route::get('/get_options/{cast_id}','App\Http\Controllers\DetailController@get_options');
 Route::get('/get_answers/{cast_id}','App\Http\Controllers\DetailController@get_answers');
+Route::get('/get_ranking','App\Http\Controllers\RankingController@get_ranking');
