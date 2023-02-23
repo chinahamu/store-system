@@ -21,6 +21,11 @@ class QueryController extends AdminController
         return $sales;
     }
 
+    public function cast_profiles(){
+        $cast_profiles = DB::table('cast_profiles')->get();
+        return $cast_profiles; 
+    }
+
     public function menus()
     {
 

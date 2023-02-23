@@ -59,4 +59,33 @@ class AggregateController extends AdminController
       }
       return $total_sale;
     }
+// app/Admin/Controllers/AggregateController.php
+
+public function sales_per_cast()
+{
+    $query = new QueryController();
+    $sale_res = $this->sales_list();
+    $cast_profiles = $query->cast_profiles();
+
+    $result = [];
+    foreach ($sale_res as $cast_id => $sales) {
+        $cast_total_sale = 0;
+        foreach ($sales as $sale) {
+            $cast_total_sale += array_sum($sale);
+        }
+        $cast_name = $cast_profiles->where('id', $cast_id)->value('name');
+        $result[$cast_id] = [
+            'cast_name' => $cast_name,
+            'total_sale' => $cast_total_sale,
+        ];
+    }
+    // 売上合計の降順でソート
+    usort($result, function($a, $b) {
+      return $b['total_sale'] - $a['total_sale'];
+    });
+    return $result;
+}
+
+  
+  
 }

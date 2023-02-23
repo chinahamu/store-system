@@ -38,7 +38,10 @@ export default {
     },
     sortedTabs() {
     // タブを日付順にソート
-    return Object.keys(this.castGroups).sort().reverse()
+      return Object.keys(this.castGroups).sort((a, b) => {
+    // aとbの日付を比較して、昇順でソートする
+    return new Date(a) - new Date(b);
+  });
     },
     selectedGroup() {
       //選択されたtabに対応するgroupを返す
