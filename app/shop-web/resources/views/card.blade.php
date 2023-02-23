@@ -1,3 +1,5 @@
+<div class="row">
+    <div class="col-md-6">
 <div class="card">
     <div class="card-header">
         売上合計
@@ -35,3 +37,38 @@
             </div>
         </div>
     </div>
+</div>
+<div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                顧客別売り上げ
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>順位</th>
+                                <th>顧客名</th>
+                                <th>売上合計</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php $rank = 1 @endphp
+                            @foreach($sales_per_customer as $customer)
+                            <tr>
+                                <td>{{ $rank }}</td>
+                                <td>{{ $customer['customer_name'] }}</td>
+                                <td>&yen;{{ number_format($customer['total_sale']) }}</td>
+                            </tr>
+                            @php $rank++ @endphp
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

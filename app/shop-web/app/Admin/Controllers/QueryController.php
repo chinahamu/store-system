@@ -20,10 +20,24 @@ class QueryController extends AdminController
             ->get();
         return $sales;
     }
+    public function sales_this_month()
+    {
+        $current_month = Carbon::now()->startOfMonth();
+        $sales = DB::table('sales')
+            ->whereBetween('service_datetime', [$current_month, now()])
+            ->get();
+        return $sales;
+    }
+
 
     public function cast_profiles(){
         $cast_profiles = DB::table('cast_profiles')->get();
         return $cast_profiles; 
+    }
+
+    public function customers(){
+        $customers = DB::table('customers')->get();
+        return $customers; 
     }
 
     public function menus()

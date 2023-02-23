@@ -13,10 +13,10 @@ use App\Admin\Controllers\QueryController;
 
 class AggregateController extends AdminController
 {
-    public function sales_list()
+    public function sales_this_month_list()
     {
       $query = new QueryController();
-      $sales = $query->sales();
+      $sales = $query->sales_this_month();
       $menus = $query->menus();
       $sale_res = [];
       // Assuming $sales and $menus are already defined as collectins
@@ -51,7 +51,7 @@ class AggregateController extends AdminController
 
     public function sales_all_sum(){
       $total_sale = 0;
-      $sales_list = $this->sales_list();
+      $sales_list = $this->sales_this_month_list();
       foreach ($sales_list as $innerArray) {
           foreach ($innerArray as $sales) {
               $total_sale += array_sum($sales);
@@ -64,7 +64,7 @@ class AggregateController extends AdminController
 public function sales_per_cast()
 {
     $query = new QueryController();
-    $sale_res = $this->sales_list();
+    $sale_res = $this->sales_this_month_list();
     $cast_profiles = $query->cast_profiles();
 
     $result = [];
@@ -85,6 +85,72 @@ public function sales_per_cast()
     });
     return $result;
 }
+public function sales_per_customer()
+{
+    $query = new QueryController();
+    $sales = $query->sales_this_month();
+    $menus = $query->menus();
+    $customers = $query->customers();
+
+    $sale_res = [];
+    // Assuming $sales and $menus are already defined as collectins
+    foreach ($sales as $sale) {
+        $sale_res[$sale->customer_id][$sale->id]["option_sale"] = 0;
+        // Loop through the menus and check for matching ids
+        foreach ($menus as $menu) {
+            // If the course_id matches the menu id, add the course_price
+            if ($sale->course_id == $menu->id) {
+                $sale_res[$sale->customer_id][$sale->id]["course_sale"] = $menu->price;
+            }
+            // If the appoint matches the menu id, add the appoint_price
+            if ($sale->appoint == $menu->id) {
+                $sale_res[$sale->customer_id][$sale->id]["appoint_sale"] = $menu->price;
+            }
+            // If the transportation_expense matches the menu id, add the transportation_expense_price
+            if ($sale->transportation_expense == $menu->id) {
+                $sale_res[$sale->customer_id][$sale->id]["transportation_expense_sale"] = $menu->price;
+            }
+
+            $option_ids = explode(',', $sale->option_ids);
+            foreach ($option_ids as $option_id) {
+                // If the transportation_expense matches the menu id, add the transportation_expense_price
+                if ($option_id == $menu->id) {
+                    $sale_res[$sale->customer_id][$sale->id]["option_sale"] += $menu->price;
+                }
+            }
+        }
+    }
+
+    $result = [];
+    foreach ($sale_res as $customer_id => $sales) {
+        $customer_total_sale = 0;
+        foreach ($sales as $sale) {
+            $customer_total_sale += array_sum($sale);
+        }
+
+        // Get the name of the customer
+        $customer_name = '';
+        foreach ($customers as $customer) {
+            if ($customer->id == $customer_id) {
+                $customer_name = $customer->name;
+                break;
+            }
+        }
+
+        $result[$customer_id] = [
+            'customer_id' => $customer_id,
+            'customer_name' => $customer_name,
+            'total_sale' => $customer_total_sale,
+        ];
+    }
+    // 売上合計の降順でソート
+    usort($result, function($a, $b) {
+      return $b['total_sale'] - $a['total_sale'];
+    });
+
+    return $result;
+}
+
 
   
   
