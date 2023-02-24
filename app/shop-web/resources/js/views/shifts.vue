@@ -6,9 +6,9 @@
 </div>
 <div class="row">
 <div class="card col-3 ms-2" v-for="profile in selectedGroup" :key="profile.id" style="width:180px;margin:10px">
-        <a href="/detail/{{profile.id}}">
+        <router-link class="nav-link" :to="'/detail/' + profile.id">
           <img :src="profile.profile_images ? 'uploads/'+profile.profile_images : 'https://placehold.jp/360x500.png'" class="card-img-top" width="180" height="250" :alt="profile.name">
-        </a>
+        </router-link>
         <div class="card-body">
           <h5 class="card-title">
             <router-link class="nav-link" :to="'/detail/' + profile.id">{{profile.name}}（{{profile.age}}）</router-link>

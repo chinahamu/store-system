@@ -22,7 +22,7 @@
             <router-link class="nav-link" to="/ranking">ランキング</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/contact">お問い合わせ</router-link>
+            <router-link class="nav-link" to="/questionnaire">アンケート</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/access">アクセス</router-link>

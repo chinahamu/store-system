@@ -25,3 +25,4 @@ Route::get('/get_shifts/{cast_id}','App\Http\Controllers\DetailController@get_sh
 Route::get('/get_options/{cast_id}','App\Http\Controllers\DetailController@get_options');
 Route::get('/get_answers/{cast_id}','App\Http\Controllers\DetailController@get_answers');
 Route::get('/get_ranking','App\Http\Controllers\RankingController@get_ranking');
+Route::post('/send_answer','App\Http\Controllers\QuestionnaireController@send_answer');
