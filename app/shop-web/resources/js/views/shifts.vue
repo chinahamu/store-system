@@ -65,6 +65,7 @@ export default {
           // APIから取得したデータをVue.jsのデータとして扱う
           this.casts = response.data;
           console.log(response);
+          this.selectedTab = this.sortedTabs[0];
         })
         .catch(error => {
           console.log(error);
