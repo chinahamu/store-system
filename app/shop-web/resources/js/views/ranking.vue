@@ -39,7 +39,7 @@ export default {
     const d = new Date();
     const lastMonth = d.getMonth();
     this.month = lastMonth;
-    axios.get('/get_ranking')
+    axios.get('/api/get_ranking')
       .then(response => {
         // APIから取得したデータをVue.jsのデータとして扱う
         this.ranking = response.data;

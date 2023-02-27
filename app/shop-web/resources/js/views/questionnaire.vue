@@ -115,7 +115,7 @@
       }
     },
     mounted() {
-      axios.get('/get_profiles')
+      axios.get('/api/get_profiles')
         .then(response => {
           // APIから取得したデータをVue.jsのデータとして扱う
           this.profiles = response.data;
@@ -145,7 +145,7 @@
       email: document.querySelector('#email').value,
     };
 
-    axios.post('/send_answer', formData)
+    axios.post('/api/send_answer', formData)
       .then(response => {
         this.message = '送信が完了しました。';
         this.showForm = false; // 送信完了メッセージを表示

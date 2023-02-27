@@ -60,7 +60,7 @@ export default {
     },
   },
   mounted() {
-    axios.get('/get_cast_shifts')
+    axios.get('/api/get_cast_shifts')
         .then(response => {
           // APIから取得したデータをVue.jsのデータとして扱う
           this.casts = response.data;

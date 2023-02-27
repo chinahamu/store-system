@@ -25,7 +25,7 @@
       }
     },
     mounted() {
-      axios.get('/get_profiles')
+      axios.get('/api/get_profiles')
         .then(response => {
           // APIから取得したデータをVue.jsのデータとして扱う
           this.profiles = response.data;

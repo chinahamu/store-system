@@ -66,7 +66,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('/get_detail/' + this.$route.params.cast_id)
+    axios.get('/api/get_detail/' + this.$route.params.cast_id)
       .then(response => {
         // APIから取得したデータをVue.jsのデータとして扱う
         this.profiles = response.data;

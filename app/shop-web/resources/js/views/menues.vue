@@ -32,7 +32,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('/get_menues')
+    axios.get('/api/get_menues')
       .then(response => {
         // APIから取得したデータをVue.jsのデータとして扱う
         this.menues = response.data;

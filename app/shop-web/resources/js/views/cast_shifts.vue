@@ -44,7 +44,7 @@ export default {
         for (let i = 0; i < 7; i++) {
             this.dates.push(moment().add(i, 'days'));
         }
-        axios.get('/get_shifts/' + this.$route.params.cast_id)
+        axios.get('/api/get_shifts/' + this.$route.params.cast_id)
             .then(response => {
                 this.shifts = response.data.reduce((acc, shift) => {
                     acc[moment(shift.start_datetime).format('YYYY-MM-DD')] = shift;

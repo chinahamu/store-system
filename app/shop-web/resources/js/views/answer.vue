@@ -23,7 +23,7 @@
       }
     },
     mounted() {
-      axios.get('/get_answers/' + this.$route.params.cast_id)
+      axios.get('/api/get_answers/' + this.$route.params.cast_id)
         .then(response => {
           // APIから取得したデータをVue.jsのデータとして扱う
           this.answers = response.data;
