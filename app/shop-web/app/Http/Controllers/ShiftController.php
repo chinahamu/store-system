@@ -14,6 +14,7 @@ class ShiftController extends Controller
             ->select('cast_profiles.*', 'cast_shifts.*')
             ->whereBetween(DB::raw('DATE(start_datetime)'), [DB::raw('CURRENT_DATE()'), DB::raw('DATE_ADD(CURRENT_DATE(), INTERVAL 5 DAY)')])
             ->select('*')
+            ->orderByDesc('start_datetime')
             ->get();
         return $castShifts;
     }

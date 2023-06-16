@@ -1,6 +1,10 @@
 <template>
+  <h1 style="text-align: center;">
+  {{profiles[0].name}}({{profiles[0].age}})
+</h1>
   <carousel :items-to-show="1.5">
     <div class="carousel__item">
+    <!-- 空だったら、https://placehold.jp/360x500.pngを表示 -->
     <slide v-if=profiles v-for="(picture, index) in pictures(profiles[0])" key="index">
       <img :src="'/uploads/' + picture" alt="profile image">
     </slide>
@@ -63,7 +67,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('/get_detail/' + this.$route.params.cast_id)
+    axios.get('/api/get_detail/' + this.$route.params.cast_id)
       .then(response => {
         // APIから取得したデータをVue.jsのデータとして扱う
         this.profiles = response.data;

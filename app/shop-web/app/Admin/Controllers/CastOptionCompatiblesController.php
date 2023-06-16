@@ -28,10 +28,10 @@ class CastOptionCompatiblesController extends AdminController
         $grid = new Grid(new CastOptionCompatibles());
 
         $grid->cast_profiles('キャスト')->display(function ($cast_profiles) {
-            return $cast_profiles['name'];
+            return $cast_profiles ? $cast_profiles['name'] : '';
         });
         $grid->get_menues('オプション')->display(function ($get_menues) {
-            return $get_menues['name'];
+            return $get_menues ? $get_menues['name'] : '';
         });
         $grid->column('type', __('Type'));
         $grid->column('created_at', __('Created at'));

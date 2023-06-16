@@ -8,14 +8,14 @@ use Encore\Admin\Layout\Row;
 use Encore\Admin\Layout\Column;
 use App\Admin\Controllers\AggregateController;
 
-class SummaryController extends AdminController
+class TodaySummaryController extends AdminController
 {
   /**
    * Title for current resource.
    *
    * @var string
    */
-  protected $title = '今月の売り上げサマリ';
+  protected $title = '今日の売り上げサマリ';
 
   public function index(Content $content)
   {
@@ -30,7 +30,7 @@ class SummaryController extends AdminController
           ->description('売上合計')
           ->row(function(Row $row) use ($total_sale_formatted, $sales_per_cast,$sales_per_customer) {
               $row->column(6, function (Column $column) use ($total_sale_formatted, $sales_per_cast,$sales_per_customer) {
-                  $column->append(view('card', ['total_sale' => $total_sale_formatted, 'sales_per_cast' => $sales_per_cast,'sales_per_customer' => $sales_per_customer]));
+                  $column->append(view('today_card', ['total_sale' => $total_sale_formatted, 'sales_per_cast' => $sales_per_cast,'sales_per_customer' => $sales_per_customer]));
               });
           });
   }

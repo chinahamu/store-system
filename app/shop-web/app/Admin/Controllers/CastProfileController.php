@@ -31,6 +31,7 @@ class CastProfileController extends AdminController
         $grid->column('tall', '身長');
         $grid->column('age', __('年齢'));
         $grid->column('bust', __('バスト'));
+        $grid->column('cup', __('カップ'));
         $grid->column('waist', __('ウエスト'));
         $grid->column('hip', __('ヒップ'));
         $grid->column('gender', __('性別'));
@@ -64,12 +65,16 @@ class CastProfileController extends AdminController
     {
         $form = new Form(new CastProfiles());
         $form->display('id', 'ID');
+        $form->image('profile_images','メイン画像')->removable()->rules('mimes:jpeg,png,jpg')->uniqueName();
         $form->multipleFile('pictures','プロフ画像')->removable()->rules('mimes:jpeg,png,jpg')->uniqueName();
         $form->text('name', '名前');
         $form->text('blad', '血液型');
         $form->number('age', '年齢');
         $form->number('tall', '身長');
         $form->number('bust', 'バスト');
+        $cupSizes = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'];
+        $cupSizeMap = array_combine($cupSizes, $cupSizes);
+        $form->select('cup', 'カップ')->options($cupSizeMap);
         $form->number('waist', 'ウエスト');
         $form->number('hip', 'ヒップ');
         $gender = [

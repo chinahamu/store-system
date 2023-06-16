@@ -87,16 +87,16 @@ class SalesController extends AdminController
         );
         $form->datetime('service_datetime', __('対応日時'))->default(date('Y-m-d H:i:00'));
         $form->select('course_id', '対応コース')->options(
-            DB::table('Menus')->where('category_id',1)->pluck('name','id')
+            DB::table('menus')->where('category_id',1)->pluck('name','id')
         );
         $form->select('appoint', '指名')->options(
-            DB::table('Menus')->where('category_id',2)->pluck('name','id')
+            DB::table('menus')->where('category_id',2)->pluck('name','id')
         );
         $form->checkbox('option_ids', 'オプション')->options(
-            DB::table('Menus')->where('category_id',3)->pluck('name','id')
+            DB::table('menus')->where('category_id',3)->pluck('name','id')
         );
         $form->select('transportation_expense', '交通費')->options(
-            DB::table('Menus')->where('category_id',4)->pluck('name','id')
+            DB::table('menus')->where('category_id',4)->pluck('name','id')
         );
         $form->number('commission', __('手数料他'));
 

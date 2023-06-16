@@ -29,10 +29,10 @@ class CastSurveyAnswersController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->cast_profiles('キャスト')->display(function ($cast_profiles) {
-            return $cast_profiles['name'];
+            return $cast_profiles ? $cast_profiles['name'] : '';
         });
         $grid->get_question('質問')->display(function ($get_question) {
-            return $get_question['question'];
+            return $get_question ? $get_question['question'] : '';
         });
         $grid->column('answer', __('Answer'));
         $grid->column('created_at', __('Created at'));
